@@ -1,10 +1,17 @@
 <template>
   <div class="leftNav">
     <ul>
-      <li v-for="item in leftMenu" :key="item.menuId">
-        <i :class="item.className"></i>
-        <div>{{ item.menuName }}</div>
-      </li>
+      <router-link
+        class="active"
+        v-for="item in leftMenu"
+        :key="item.menuId"
+        :to="item.router"
+      >
+        <li>
+          <i :class="item.className"></i>
+          <div>{{ item.menuName }}</div>
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -17,36 +24,43 @@ export default {
         {
           menuId: '1',
           className: 'icon iconfont icon-goumai',
-          menuName: '收银'
+          menuName: '收银',
+          router: '/'
         },
         {
           menuId: '2',
           className: 'icon iconfont icon-dianpu',
-          menuName: '店铺'
+          menuName: '店铺',
+          router: '/Shop'
         },
         {
           menuId: '3',
           className: 'icon iconfont icon-hanbao',
-          menuName: '商品'
+          menuName: '商品',
+          router: '/Goods'
         },
         {
           menuId: '4',
           className: 'icon iconfont icon-huiyuanqia',
-          menuName: '会员'
+          menuName: '会员',
+          router: '/MemberShips'
         },
         {
           menuId: '5',
           className: 'icon iconfont icon-xiugaioryijian',
-          menuName: '统计'
+          menuName: '统计',
+          router: '/Statistics'
         },
         {
           menuId: '6',
           className: 'icon iconfont icon-gongnengjianyi',
-          menuName: '设置'
+          menuName: '设置',
+          router: '/Settings'
         }
       ]
     }
-  }
+  },
+  methods: {}
 }
 </script>
 
@@ -73,5 +87,9 @@ export default {
   text-align: center;
   border-bottom: 1px solid #e9e9e9;
   padding: 10px;
+}
+.active {
+  text-decoration: none;
+  color: #fff;
 }
 </style>

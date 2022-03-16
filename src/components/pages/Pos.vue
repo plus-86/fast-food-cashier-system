@@ -54,7 +54,7 @@
           <el-tab-pane label="外卖">外卖</el-tab-pane>
         </el-tabs>
       </el-col>
-      <el-col :span="17" class="pos-product">
+      <el-col :span="17" class="pos-product" id="type-list">
         <div class="common-goods">
           <div class="title">常用商品</div>
           <div class="common-goods-list">
@@ -73,7 +73,7 @@
           </div>
         </div>
         <div class="goods-type">
-          <el-tabs type="card">
+          <el-tabs class="type-box" type="card">
             <el-tab-pane label="汉堡">
               <ul class="goods-list">
                 <div class="goods-list-box">
@@ -313,9 +313,13 @@ export default {
     }
   },
   mounted() {
-    let height = document.body.clientHeight // clientHeight返回的是元素像素高度，这里返回body元素像素高度
-    console.log(height)
-    document.getElementById('order-list').style.height = 781 + 'px' // 这里记得加单位
+    function setHeight() {
+      let height = document.body.clientHeight // clientHeight返回的是元素像素高度，这里返回body元素像素高度
+      console.log(height)
+      document.getElementById('order-list').style.height = height + 'px' // 这里记得加单位
+      document.getElementById('type-list').style.height = height + 'px' // 这里记得加单位
+    }
+    setTimeout(setHeight, 1) // 不知道为啥取不到dom
   }
 }
 </script>
@@ -347,12 +351,10 @@ export default {
   background-color: #fff;
   list-style: none;
   display: flex;
-  margin: 10px 15px;
+  margin: 10px 10px;
   cursor: pointer;
 }
-.pos-order {
-  background-color: #fff;
-}
+
 .btn-box {
   margin-top: 30px;
 }
@@ -377,5 +379,20 @@ export default {
 }
 .c-price {
   color: #58b7ff;
+}
+
+/* 这里两个没有把高度固定，窗体被新增的元素无限扩容, 从而导致overflow-y:scroll不起作用 */
+.common-goods {
+  height: 23%;
+}
+.goods-type {
+  height: 77%;
+}
+
+.pos-order,
+.goods-type,
+.common-goods {
+  background-color: #fff;
+  overflow-y: scroll;
 }
 </style>
