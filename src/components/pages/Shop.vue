@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Shop Page</h1>
+    <h1>Coming soon</h1>
   </div>
 </template>
 
