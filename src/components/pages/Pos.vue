@@ -610,8 +610,15 @@ export default {
     deleteAllGoods() {
       if (this.totalCount !== 0) {
         this.tableData = []
+        this.$message.success({
+          message: '订单列表已清空',
+          center: true
+        })
       } else {
-        this.$message.warning('订单是空的')
+        this.$message.warning({
+          message: '订单是空的',
+          center: true
+        })
       }
     },
     // 结账
@@ -621,14 +628,23 @@ export default {
         // 向服务器发送请求什么的
         // 然后清空订单，弹窗提示
         this.tableData = []
-        this.$message.success('结账成功') // 这个是element自带的弹窗
+        this.$message.success({
+          message: '结账成功',
+          center: true // 剧中
+        }) // 这个是element自带的弹窗
       } else {
         // 如果没有商品，弹窗提示
-        this.$message.error('请添加商品')
+        this.$message.error({
+          message: '请添加商品',
+          center: true
+        })
       }
     },
     comingSoon() {
-      this.$message.warning('研发中')
+      this.$message.warning({
+        message: '研发中',
+        center: true
+      })
     }
   },
   computed: {
